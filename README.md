@@ -19,7 +19,7 @@ The project involved building a multi-tier network and compute environment on Go
 Verified the complete lifecycle management of all resources through the Terraform CLI.
 
 **Command:** `terraform state list`
-![Terraform State Inventory](image_872c4b.png)
+![Terraform State Inventory](terrastate.png)
 
 ### 2. Network Infrastructure
 Provisioned a custom VPC with isolated regional subnets using the Terraform Registry.
@@ -27,22 +27,22 @@ Provisioned a custom VPC with isolated regional subnets using the Terraform Regi
 *   **Subnet 01:** `10.10.10.0/24`
 *   **Subnet 02:** `10.10.20.0/24`
 
-![VPC and Subnet Configuration](image_872c70.png)
+![VPC and Subnet Configuration](vpcs.png)
 
 ### 3. Compute Instances
 Managed the modification of existing VM instances to meet updated hardware specifications (`e2-standard-2`) and connected them to the new custom subnets.
 
-![VM Instance Status](image_872c87.png)
+![VM Instance Status](instances.png)
 
 ### 4. Firewall & Security Policies
 Implemented an ingress firewall rule to permit web traffic (port 80) from any source across the VPC.
 
-![Firewall Rule Configuration](image_872c6c.png)
+![Firewall Rule Configuration](tfirewall.png)
 
 ### 5. Remote Backend Implementation
 To follow DevOps best practices, the `terraform.tfstate` file was migrated to a secure Cloud Storage bucket.
 
-![GCS Remote Backend](image_872c4f.png)
+![GCS Remote Backend](statefile.png)
 
 ---
 
@@ -68,7 +68,6 @@ terraform init
 ```
 
 # 2. Import existing, unmanaged Google Cloud instances into the Terraform state
-# Replace [INSTANCE_ID] with the specific ID found in the GCP Console
 ```bash
 terraform import module.instances.google_compute_instance.tf-instance-1 tf-instance-1
 terraform import module.instances.google_compute_instance.tf-instance-2 tf_instance-2
