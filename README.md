@@ -1,4 +1,4 @@
-# GCP Infrastructure Automation with Terraform (Challenge Lab)
+# GCP Infrastructure Automation with Terraform
 
 This repository contains the solution for a Google Cloud Challenge Lab focused on automating infrastructure using Terraform. The project demonstrates advanced skills in modularization, state management, and the lifecycle of cloud resources.
 
