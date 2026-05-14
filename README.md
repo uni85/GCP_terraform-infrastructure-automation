@@ -1,6 +1,6 @@
 # GCP Infrastructure Automation with Terraform
 
-This repository contains the solution for a Google Cloud Challenge Lab focused on automating infrastructure using Terraform. The project demonstrates advanced skills in modularization, state management, and the lifecycle of cloud resources.
+This repository contains the solution for a Google Cloudfocused on automating infrastructure using Terraform. The project demonstrates advanced skills in modularization, state management, and the lifecycle of cloud resources.
 
 ## Architecture Overview
 The project involved building a multi-tier network and compute environment on Google Cloud Platform. 
@@ -62,12 +62,12 @@ To follow DevOps best practices, the `terraform.tfstate` file was migrated to a 
 These commands represent the core workflow used to manage the infrastructure lifecycle during this project.
 
 
-# 1. Initialize the working directory and download necessary providers/modules
+# 1. Initializing the working directory and download necessary providers/modules
 ```bash
 terraform init
 ```
 
-# 2. Import existing, unmanaged Google Cloud instances into the Terraform state
+# 2. Importing the existing, unmanaged Google Cloud instances into the Terraform state
 ```bash
 terraform import module.instances.google_compute_instance.tf-instance-1 tf-instance-1
 terraform import module.instances.google_compute_instance.tf-instance-2 tf_instance-2
@@ -76,7 +76,7 @@ terraform import module.instances.google_compute_instance.tf-instance-2 tf_insta
 ```bash
 terraform apply -auto-approve
 ```
-# 4. Verify the resources currently managed by the state file
+# 4. Verifying the resources currently managed by the state file
 ```bash
 terraform state list
 ```
