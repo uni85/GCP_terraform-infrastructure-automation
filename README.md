@@ -19,7 +19,7 @@ The project involved building a multi-tier network and compute environment on Go
 Verified the complete lifecycle management of all resources through the Terraform CLI.
 
 **Command:** `terraform state list`
-![Terraform State Inventory](terrastate.png)
+![Terraform State Inventory](docs/terrastate.png)
 
 ### 2. Network Infrastructure
 Provisioned a custom VPC with isolated regional subnets using the Terraform Registry.
@@ -27,22 +27,22 @@ Provisioned a custom VPC with isolated regional subnets using the Terraform Regi
 *   **Subnet 01:** `10.10.10.0/24`
 *   **Subnet 02:** `10.10.20.0/24`
 
-![VPC and Subnet Configuration](vpcs.png)
+![VPC and Subnet Configuration](docs/vpcs.png)
 
 ### 3. Compute Instances
 Managed the modification of existing VM instances to meet updated hardware specifications (`e2-standard-2`) and connected them to the new custom subnets.
 
-![VM Instance Status](instances.png)
+![VM Instance Status](docs/instances.png)
 
 ### 4. Firewall & Security Policies
 Implemented an ingress firewall rule to permit web traffic (port 80) from any source across the VPC.
 
-![Firewall Rule Configuration](tfirewall.png)
+![Firewall Rule Configuration](docs/tfirewall.png)
 
 ### 5. Remote Backend Implementation
 To follow DevOps best practices, the `terraform.tfstate` file was migrated to a secure Cloud Storage bucket.
 
-![GCS Remote Backend](statefile.png)
+![GCS Remote Backend](docs/statefile.png)
 
 ---
 
