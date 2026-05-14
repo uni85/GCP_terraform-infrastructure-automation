@@ -2,7 +2,7 @@
 
 This repository contains the solution for a Google Cloud Challenge Lab focused on automating infrastructure using Terraform. The project demonstrates advanced skills in modularization, state management, and the lifecycle of cloud resources.
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 The project involved building a multi-tier network and compute environment on Google Cloud Platform. 
 
 ### Key Technical Achievements:
@@ -13,7 +13,7 @@ The project involved building a multi-tier network and compute environment on Go
 
 ---
 
-## 📊 Deployment Evidence
+## Deployment Evidence
 
 ### 1. Resource Inventory & State Management
 Verified the complete lifecycle management of all resources through the Terraform CLI.
@@ -46,7 +46,7 @@ To follow DevOps best practices, the `terraform.tfstate` file was migrated to a 
 
 ---
 
-## 🛠️ Infrastructure as Code Implementation
+## Infrastructure as Code Implementation
 
 ### File Structure
 ```text
@@ -57,7 +57,7 @@ To follow DevOps best practices, the `terraform.tfstate` file was migrated to a 
     ├── instances/   # VM resource definitions
     └── storage/     # GCS bucket for remote state
 ```
-### 🛠️ Key Terraform Commands
+### Key Terraform Commands
 
 These commands represent the core workflow used to manage the infrastructure lifecycle during this project.
 
@@ -81,7 +81,7 @@ terraform apply -auto-approve
 terraform state list
 ```
 
-### 🛡️ Disaster Recovery: State & Backend Restoration
+### Disaster Recovery: State & Backend Restoration
 
 During the deployment lifecycle, a "State Panicked" scenario occurred where the remote backend (GCS Bucket) was deleted while infrastructure was still partially active. This section details the recovery process used to regain control of the environment.
 
@@ -104,7 +104,7 @@ The screenshot below shows the successful `terraform apply` after the recovery, 
 
 ---
 
-### 💡 Infrastructure Best Practices Implemented
+### Infrastructure Best Practices Implemented
 To prevent this scenario in a production environment, I have implemented the following safeguards in the code:
 
 *   **Lifecycle Protection:** Added `prevent_destroy = true` to the GCS bucket resource to ensure the state backend cannot be accidentally deleted.
