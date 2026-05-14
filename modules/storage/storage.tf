@@ -3,8 +3,9 @@ resource "google_storage_bucket" "storage-bucket" {
   location                    = "US"
   force_destroy               = true
   uniform_bucket_level_access = true
-}
 
-lifecycle {
+  lifecycle {
   prevent_destroy = true
+  }
+
 }
