@@ -56,22 +56,28 @@ To follow DevOps best practices, the `terraform.tfstate` file was migrated to a 
 └── modules/
     ├── instances/   # VM resource definitions
     └── storage/     # GCS bucket for remote state
-
+```
 ### 🛠️ Key Terraform Commands
 
 These commands represent the core workflow used to manage the infrastructure lifecycle during this project.
 
-```bash
+
 # 1. Initialize the working directory and download necessary providers/modules
+```bash
 terraform init
+```
 
 # 2. Import existing, unmanaged Google Cloud instances into the Terraform state
 # Replace [INSTANCE_ID] with the specific ID found in the GCP Console
-terraform import module.instances.google_compute_instance.tf-instance-1 [INSTANCE_ID]
-terraform import module.instances.google_compute_instance.tf-instance-2 [INSTANCE_ID]
-
+```bash
+terraform import module.instances.google_compute_instance.tf-instance-1 tf-instance-1
+terraform import module.instances.google_compute_instance.tf-instance-2 tf_instance-2
+```
 # 3. Preview and execute the actions required to reach the desired state
+```bash
 terraform apply -auto-approve
-
+```
 # 4. Verify the resources currently managed by the state file
+```bash
 terraform state list
+```
