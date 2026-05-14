@@ -80,3 +80,33 @@ terraform apply -auto-approve
 ```bash
 terraform state list
 ```
+
+### 🛡️ Disaster Recovery: State & Backend Restoration
+
+During the deployment lifecycle, a "State Panicked" scenario occurred where the remote backend (GCS Bucket) was deleted while infrastructure was still partially active. This section details the recovery process used to regain control of the environment.
+
+#### **The Challenge**
+*   **Problem:** `terraform destroy` removed the state bucket `tf-bucket-983707`.
+*   **Result:** Terraform lost its "memory," resulting in `404: Bucket Not Found` errors and preventing any further `plan` or `apply` operations.
+
+#### **The Solution (Disaster Recovery Workflow)**
+To restore the environment, I implemented a manual state rescue:
+1.  **State Salvage:** Located the `errored.tfstate` emergency file created by Terraform during the crash.
+2.  **Metadata Purge:** Cleaned the local environment (`rm -rf .terraform/`) to force Terraform to forget the broken remote link.
+3.  **Local Re-Initialization:** Reconfigured the backend to `local` to allow Terraform to read the salvaged state file.
+4.  **Infrastructure Re-Sync:** Re-applied the configuration to recreate the GCS bucket and reconcile the active VPC/VM resources.
+5.  **Remote Migration:** Migrated the local state back to the newly created GCS bucket using `terraform init -migrate-state`.
+
+#### **Final Verification**
+The screenshot below shows the successful `terraform apply` after the recovery, confirming that all 7 resources are back under Terraform management.
+
+![Terraform Apply Recovery Success](docs/applied.png)
+
+---
+
+### 💡 Infrastructure Best Practices Implemented
+To prevent this scenario in a production environment, I have implemented the following safeguards in the code:
+
+*   **Lifecycle Protection:** Added `prevent_destroy = true` to the GCS bucket resource to ensure the state backend cannot be accidentally deleted.
+*   **Implicit Dependencies:** Used resource linking to ensure networking components are destroyed/created in the correct logical order.
+  
